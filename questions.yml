@@ -1,0 +1,354 @@
+---
+questions:
+  - type: section
+    name: "About you"
+    contents:
+      - type: selection
+        has_other: 1
+        q: "What is your home department?"
+        as:
+          - Linguistics
+          - Psychology
+          - Biology
+          - "Computer Science"
+          - "Second Language Acquisition"
+          - "Hearing and Speech Sciences"
+          - Philosophy
+      - type: selection
+        q: "What is your gender?"
+        as:
+          - Male
+          - Female
+      - type: selection
+        q: "Are you Hispanic/Latino?"
+        as:
+          - Yes
+          - No
+      - type: mselection
+        q: "What is your race? Select one or more"
+        as:
+          - "American Indian or Alaska Native"
+          - "Black/African-American"
+          - "Asian"
+          - "Native Hawaiian or other Pacific Islander"
+          - "White"
+      - type: selection
+        q: "Are you a faculty or student?"
+        as:
+          - "Faculty"
+          - "1st year student"
+          - "2nd year student"
+          - "3rd year student"
+          - "4th year student"
+          - "5th year student"
+          - "More-than-5th year student"
+      - type: selection
+        q: "What is your IGERT status?"
+        as:
+          - "Already a participant; have NSF funding"
+          - "Already a participant; no NSF funding"
+          - "Planning to become affiliated with the program"
+          - "No plans to apply to the program"
+  - type: section
+    name: "Morning Methods"
+    contents:
+      - type: "selection"
+        q: "Did you participate in the morning methods session?"
+        as:
+          - "No."
+          - "Yes &mdash; once."
+          - "Yes &mdash; occasionally."
+          - "Yes &mdash; every session that was offered."
+        hide_remainder_if_answer_is: "No."
+      - type: section
+        name: "Statistics/R"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to Statistics/R."
+              - "The same amount of time allocated to Statistics/R."
+              - "Less time allocated to Statistics/R."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "Infant Methods"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to infant methods."
+              - "The same amount of time allocated to infant methods."
+              - "Less time allocated to infant methods."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "Eye tracking"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to eye tracking."
+              - "The same amount of time allocated to eye tracking."
+              - "Less time allocated to eye tracking."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "EEG Methods"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to EEG."
+              - "The same amount of time allocated to EEG."
+              - "Less time allocated to EEG."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "MEG Methods"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to MEG."
+              - "The same amount of time allocated to MEG."
+              - "Less time allocated to MEG."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "WEKA Methods"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to Weka."
+              - "The same amount of time allocated to Weka."
+              - "Less time allocated to Weka."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "Praat Methods"
+        contents:
+          - type: selection
+            q: "In planning future winter storm workshops, I would have liked:"
+            as:
+              - "More time allocated to Praat."
+              - "The same amount of time allocated to Praat."
+              - "Less time allocated to Praat."
+          - type: agreement
+            q: "After participating in this session:"
+            as:
+              - "I am more knowledable about the software."
+              - "I intend to use the software in my graduate studies."
+              - "I am capable of using the software in my graduate studies."
+  - type: section
+    name: "Lunch Sessions With Faculty"
+    contents:
+      - type: selection
+        q: "Did you participate in the Lunch Sessions with Faculty?"
+        as:
+          - "No."
+          - "Yes &mdash; once."
+          - "Yes &mdash; occasionally."
+          - "Yes &mdash; every session that was offered."
+        hide_remainder_if_answer_is: "No."
+      - type: agreement
+        q: "After participating in the lunch sessions with faculty:"
+        as:
+          - "I am more knowledgable about opportunities available on campus."
+          - "I intend to get involved in the opportunities available on campus that were discussed during the lunch sessions."
+          - "I know who to contact/where to go in order to get involved with opportunities on campus."
+      - type: selection
+        q: "In planning future winter storm workshops, I would have liked:"
+        as:
+          - "More time allocated to sessions with faculty."
+          - "The same amount of time allocated to sessions with faculty."
+          - "Less time allocated to sessions with faculty."
+      - type: agreement
+        q: ""
+        as:
+          - "Overall, I found the lunch sessions with faculty to be helpful in my graduate studies."
+      - type: comment
+        q: "Please comment on the lunch sessions with faculty (what was most helpful/least helpful, etc.)"
+  - type: section
+    name: "Afternoon Research Lecture Sessions"
+    contents:
+      - type: selection
+        q: "Did you participate in the Afternoon Research Lecture sessions?"
+        as:
+          - "No."
+          - "Yes &mdash; once."
+          - "Yes &mdash; occasionally."
+          - "Yes &mdash; every session that was offered."
+        hide_remainder_if_answer_is: "No."
+      - type: agreement
+        q: "After participating in the afternoon research sessions (that took place on Monday and Tuesday afternoon):"
+        as:
+          - "I am more knowledgeable about how to incorporate language diversity issues into my research."
+          - "I intend to incorporate language diversity issues into my research."
+          - "I gained the abilies necessary to incorporate language diversity issues into my research."
+      - type: selection
+        q: "In planning future winter storm workshops, I would have liked:"
+        as:
+          - "More time allocated to research lecture sessions."
+          - "The same amount of time allocated to research lecture sessions."
+          - "Less time allocated to research lecture sessions."
+      - type: agreement
+        q: ""
+        as:
+          - "Overall, I found the afternoon research lecture sessions to be helpful to my graduate studies."
+      - type: comment
+        q: "Please comment on the afternoon research lecture sessions (what was most helpful/least helpful, etc.)"
+  - type: section
+    name: "Afternoon Research Group Sessions"
+    contents:
+      - type: selection
+        q: "Which research group did you participate in?"
+        as:
+          - None
+          - Reflexives
+          - "Theory of Mind and Language Acquisition"
+          - "Action-Perception loops"
+          - "Sounds"
+          - "Language Disorders"
+        hide_remainder_if_answer_is: "None"
+      - type: selection
+        q: "Were the members of your group from a variety of disciplinary backgrounds/perspectives (at least three)?"
+        as:
+          - "Yes."
+          - "No."
+          - "I don't know."
+      - type: selection
+        q: "Were any research plans formulated?"
+        as:
+          - "Yes."
+          - "No."
+          - "I don't know."
+      - type: agreement
+        q: "While participating in the research group:"
+        as:
+          - "I had adequate background to understand the discussions that took place."
+          - "I felt comfortable participating."
+          - "The dynamic in my group was positive."
+          - "All the members of the group contributed to the discussions."
+      - type: selection
+        q: "The faculty role in the discussions was:"
+        as:
+          - "Too large"
+          - "About right"
+          - "Too small"
+      - type: agreement
+        q: "After participating in the research group sessions:"
+        as:
+          - "I gained a better understanding of other perspectives on the topic."
+          - "I intend to continue my involvement in this research area after Winter Storm."
+          - "I am more knowledgeable about how to conduct collaborative/interdisciplinary research."
+          - "I intend to get involved in collaborative/interdisciplinary research."
+          - "I gained the abilities necessary to conduct collaborative/interdisciplinary research."
+      - type: selection
+        q: "How often did you participate in your group's discussions?"
+        as:
+          - "Not at all"
+          - "Occasionally &mdash; but not in every meeting."
+          - "At least once in each meeting."
+          - "Frequently in every meeting."
+      - type: selection
+        q: "In planning future Winter Storm workshops, I would have liked:"
+        as:
+          - "More time allocated to research group sessions."
+          - "The same amount of time allocated to research group sessions."
+          - "Less time allocated to research group sessions."
+      - type: agreement
+        q: ""
+        as:
+          - "Overall, I found the research group sessions to be helpful to my graduate studies."
+      - type: comment
+        q: "Please comment on the research group sessions (what was most helpful/least helpful)"
+
+  - type: section
+    name: "Session with IGERT from Penn and Johns Hopkins"
+    contents:
+      - type: selection
+        q: "Did you participate in the session with IGERT from Penn and Johns Hopkins?"
+        as:
+          - "Yes"
+          - "No."
+        hide_remainder_if_answer_is: "No."
+      - type: agreement
+        q: "After participating in the session with IGERT from Penn and Johns Hopkins:"
+        as:
+          - "I am more knowledgeable about other IGERT programs."
+          - "I feel connected to a larger network of interdisciplinary language researchers."
+          - "Overall, I found the session with IGERT from Penn and Johns Hopkins to be helpful to my graduate studies."
+
+  - type: section
+    name: "Socializing/community building time"
+    contents:
+      - type: selection
+        q: "Did you participate in socializing activities?"
+        as:
+          - "No."
+          - "Yes &mdash; once."
+          - "Yes &mdash; occasionally."
+          - "Yes &mdash; every session that was offered."
+        hide_remainder_if_answer_is: "No."
+
+  - type: section
+    name: "Overall"
+    contents:
+      - type: agreement
+        q: "After Winter Storm:"
+        as:
+          - "I have a better understanding of the challenges of interdisciplinary research."
+          - "I have a better understanding of what other departments work on."
+      - type: selection
+        q: "My general attitude about the Winter Storm workshop is:"
+        as:
+          - "Very positive."
+          - "Positive."
+          - "Neutral."
+          - "Negative."
+          - "Very negative."
+      - type: selection
+        q: "After Winter Storm, do you anticipate forming new research collaborations with people you meet?"
+        as:
+          - "Yes"
+          - "No"
+      - type: comment
+        q: "If yes, please describe; if no, explain why not."
+      - type: selection
+        if_is_student: 1
+        q: "How much does Winter Storm contribute to your overall IGERT experience?"
+        as:
+          - "None"
+          - "A little"
+          - "Some"
+          - "A lot"
+      - type: comment
+        q: "Please comment on the overall Winter Storm workshop experience (what was most helpful/least helpful)"
+      - type: comment
+        q: "What are the things that your learned about interdisciplinary language research from attending Winter Storm?"
