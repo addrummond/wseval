@@ -5,7 +5,7 @@ use JSON::XS;
 use Spreadsheet::WriteExcel;
 use File::Spec::Functions qw( catfile );
 
-use constant RESULTS_DIR => '/tmp/results';
+use constant RESULTS_DIR => '/var/ws2010results';
 
 my $ofname = "results.xls";
 

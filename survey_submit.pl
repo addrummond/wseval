@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 use warnings;
 use strict;
 
@@ -5,7 +6,7 @@ use CGI;
 use JSON::XS;
 use File::Spec::Functions qw( catfile );
 
-use constant RESULTS_DIR => "/tmp/results";
+use constant RESULTS_DIR => "/var/ws2010results";
 
 my $q = CGI->new;
 

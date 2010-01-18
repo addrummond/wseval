@@ -76,7 +76,7 @@ questions:
               - "I intend to use the software in my graduate studies."
               - "I am capable of using the software in my graduate studies."
       - type: section
-        name: "Infant Methods"
+        name: "Infant Studies"
         contents:
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
@@ -136,7 +136,7 @@ questions:
               - "I intend to use the software in my graduate studies."
               - "I am capable of using the software in my graduate studies."
       - type: section
-        name: "WEKA Methods"
+        name: "Machine Learning with Weka"
         contents:
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
@@ -151,7 +151,7 @@ questions:
               - "I intend to use the software in my graduate studies."
               - "I am capable of using the software in my graduate studies."
       - type: section
-        name: "Praat Methods"
+        name: "Phonetic Analysis with Praat"
         contents:
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
