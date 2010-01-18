@@ -22,8 +22,9 @@ my $tt = Template->new();
 
 my @stats = stat('main.tt');
 my @cstats = stat('main.tt.cache');
+my @qstats = stat('questions.yml');
 
-if (! -f 'main.tt.cache' || $cstats[9] < $stats[9]) {
+if (! -f 'main.tt.cache' || $cstats[9] < $stats[9] || $cstats[9] < $qstats[9]) {
     open my $cache, '>main.tt.cache' or die "Unable to open cache file: $!";
     $tt->process("main.tt", { questions => $encoded_questions }, $cache);
     close $cache or die "Unable to close cache file: $!";
