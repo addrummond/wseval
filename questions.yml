@@ -41,7 +41,7 @@ questions:
           - "3rd year student"
           - "4th year student"
           - "5th year student"
-          - "More-than-5th year student"
+          - "More-than-5th-year student"
       - type: selection
         q: "What is your IGERT status?"
         as:
