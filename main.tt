@@ -515,17 +515,49 @@ $.widget("ui.paginated", {
 
 function isQType(x) { return x == "selection" || x == "mselection" || x == "agreement" ||  x == "comment"; }
 
+function recShow(div) {
+    var cs = div.children();
+    for (var i = 0; i < cs.length; ++i) {
+        $(cs[i]).show("normal");
+        if ($(cs[i]).data('isSection')) {
+            recShow($(cs[i]));
+        }
+        else {
+            //alert("UNEXCLUDE: " + cs[i].innerHTML);
+            $(cs[i]).data('exclude', false);
+        }
+    }
+}
+function recHide(div, triggerDiv) {
+    var cs = div.children();
+    var afterTrigger = ! triggerDiv;
+    for (var i = 0; i < cs.length; ++i) {
+        if (triggerDiv && cs[i] == triggerDiv[0]) afterTrigger = true;
+        else if (afterTrigger) {
+            if ($(cs[i]).data('isSection')) {
+                recHide($(cs[i]));
+            }
+            else {
+                $(cs[i]).hide("normal").data('exclude', true);
+                //alert("EXCLUDE: " + cs[i].innerHTML);
+            }
+        }
+    }
+}
+
 function addWatchOn(sectionDiv, triggerQ, triggerDiv) {
     triggerDiv[triggerDiv.data('widgetName')]("setAnswerWatcher", function (ans) {
         if (triggerQ.hide_remainder_if_answer_is == ans) {
-            var cs = sectionDiv.children();
+            recHide(sectionDiv, triggerDiv);
+            /*var cs = sectionDiv.children();
             for (var i = 0; i < cs.length; ++i) {
                 if (cs[i] != triggerDiv[0] && ! cs[i].tagName.match(/H\d+/i))
                     $(cs[i]).hide("normal").data('exclude', true);
-            }
+            }*/
         }
         else {
-            sectionDiv.children().show("normal").data('exclude', false);
+            recShow(sectionDiv);
+            //sectionDiv.children().show("normal").data('exclude', false);
         }
     });
 }
@@ -556,20 +588,28 @@ function buildQ(pageDiv, q, level) {
     g_questions.push([level, qdiv]);
 
     pageDiv.append(qdiv);
+    return qdiv;
 }
 
-function buildPage (elems, pageDiv, level) {
+function buildPage (elems, pageDiv, level, hiding) {
     for (var i = 0; i < elems.length; ++i) {
         if (isQType(elems[i].type)) {
-            buildQ(pageDiv, elems[i], level);
+            var qdiv = buildQ(pageDiv, elems[i], level);
+            if (elems[i].hide_remainder_if_answer_is) hiding = true;
+            else if (hiding) {
+                qdiv.hide().data('exclude', true);
+            }
         }
         else if (elems[i].type == "section") {
             var eDiv;
-            pageDiv.append(eDiv = $("<div>").append($("<h" + (level.length+2) + ">").append(elems[i].name)));
+            var h;
+            pageDiv.append(eDiv = $("<div>").append(h = $("<h" + (level.length+2) + ">").append(elems[i].name)));
+            if (hiding) { h.hide(); }
             var newlevel = [];
             for (var j = 0; j < level.length; ++j) newlevel.push(level[j]);
             newlevel.push(elems[i].name);
-            buildPage(elems[i].contents, eDiv, newlevel);
+            eDiv.data('isSection', true);
+            buildPage(elems[i].contents, eDiv, newlevel, hiding);
         }
         else {
             alert("ERROR: Should not get here (" + elems[i].type + ")");
