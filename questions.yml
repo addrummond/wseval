@@ -65,6 +65,12 @@ questions:
         name: "Statistics/R"
         contents:
           - type: selection
+            q: "Did you participate in the Statistics/R session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: "No"
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to Statistics/R."
@@ -79,6 +85,12 @@ questions:
       - type: section
         name: "Infant Studies"
         contents:
+          - type: selection
+            q: "Did you participate in the infant studies section?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
@@ -95,6 +107,12 @@ questions:
         name: "Eye tracking"
         contents:
           - type: selection
+            q: "Did you participate in the eye tracking session?"
+            as: 
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to eye tracking."
@@ -109,6 +127,12 @@ questions:
       - type: section
         name: "EEG Methods"
         contents:
+          - type: selection
+            q: "Did you participate in the EEG methods session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
@@ -125,6 +149,12 @@ questions:
         name: "MEG Methods"
         contents:
           - type: selection
+            q: "Did you participate in the MEG methods section?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to MEG."
@@ -140,6 +170,12 @@ questions:
         name: "Machine Learning with Weka"
         contents:
           - type: selection
+            q: "Did you participate in the Machine Learning with Weka session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to Weka."
@@ -154,6 +190,12 @@ questions:
       - type: section
         name: "Phonetic Analysis with Praat"
         contents:
+          - type: selection
+            q: "Did you participate in the phonetic analysis with Praat session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:

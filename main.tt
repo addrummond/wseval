@@ -404,6 +404,20 @@ $.widget("ui.q_selection", {
 
     setAnswerWatcher : function (v) { this.options.answerWatcher = v; },
 
+    ishiding : function () {
+        if (this.options.mselection || ! this.element.data('hide_remainder_if_answer_is'))
+            return false;
+        var oneIsChecked = false;
+        for (var i = 0; i < this.rbuts.length; ++i) {
+            if (this.rbuts[i].attr('checked')) {
+                oneIsChecked = true;
+                if (this.rbuts[i].data('value') == this.element.data('hide_remainder_if_answer_is'))
+                    return true;
+            }
+        }
+        return ! oneIsChecked;
+    },
+
     getAnswer : function () {
         var astring = ""
         if (this.options.mselection) {
@@ -423,7 +437,7 @@ $.widget("ui.q_selection", {
         }
     }
 });
-$.ui.q_selection.getter = 'getAnswer';
+$.ui.q_selection.getter = 'getAnswer ishiding';
 
 $.widget("ui.paginated", {
     _init: function () {
@@ -540,14 +554,14 @@ function isQType(x) { return x == "selection" || x == "mselection" || x == "agre
 
 function recShow(div) {
     var cs = div.children();
-    for (var i = 0; i < cs.length; ++i) {
-        $(cs[i]).show("normal");
+    var inHiding = false;
+    for (var i = 0; i < cs.length && ! inHiding; ++i) {
         if ($(cs[i]).data('isSection')) {
             recShow($(cs[i]));
         }
-        else {
-            //alert("UNEXCLUDE: " + cs[i].innerHTML);
-            $(cs[i]).data('exclude', false);
+        else if ($(cs[i]).data('widgetName') || cs[i].tagName.match(/H\d+/)) {
+            $(cs[i]).show("normal").data('exclude', false);
+            if (! inHiding && $(cs[i]).data('widgetName') == "q_selection") inHiding = $(cs[i]).q_selection("ishiding");
         }
     }
 }
@@ -560,7 +574,7 @@ function recHide(div, triggerDiv) {
             if ($(cs[i]).data('isSection')) {
                 recHide($(cs[i]));
             }
-            else {
+            else if ($(cs[i]).data('widgetName') || cs[i].tagName.match(/H\d+/)) {
                 $(cs[i]).hide("normal").data('exclude', true);
                 //alert("EXCLUDE: " + cs[i].innerHTML);
             }
@@ -572,17 +586,12 @@ function addWatchOn(sectionDiv, triggerQ, triggerDiv) {
     triggerDiv[triggerDiv.data('widgetName')]("setAnswerWatcher", function (ans) {
         if (triggerQ.hide_remainder_if_answer_is == ans) {
             recHide(sectionDiv, triggerDiv);
-            /*var cs = sectionDiv.children();
-            for (var i = 0; i < cs.length; ++i) {
-                if (cs[i] != triggerDiv[0] && ! cs[i].tagName.match(/H\d+/i))
-                    $(cs[i]).hide("normal").data('exclude', true);
-            }*/
         }
         else {
             recShow(sectionDiv);
-            //sectionDiv.children().show("normal").data('exclude', false);
         }
     });
+    triggerDiv.data('hide_remainder_if_answer_is', triggerQ.hide_remainder_if_answer_is);
 }
 
 // This is a list whose members are of the following format.
@@ -618,10 +627,10 @@ function buildPage (elems, pageDiv, level, hiding) {
     for (var i = 0; i < elems.length; ++i) {
         if (isQType(elems[i].type)) {
             var qdiv = buildQ(pageDiv, elems[i], level);
-            if (elems[i].hide_remainder_if_answer_is) hiding = true;
-            else if (hiding) {
+            if (hiding)
                 qdiv.hide().data('exclude', true);
-            }
+            if (elems[i].hide_remainder_if_answer_is)
+                hiding = true;
         }
         else if (elems[i].type == "section") {
             var eDiv;
