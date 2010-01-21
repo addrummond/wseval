@@ -87,6 +87,9 @@ th {
     vertical-align: top;
     padding-left: 1em;
 }
+.q-selection input {
+    font-size: [% SMALL %];
+}
 
 p.question {
     margin-top: 0;
@@ -260,6 +263,7 @@ $.widget("ui.q_agreement", {
                   .append(os.q));
 
         var degrees = os.degrees || 5;
+        this.degrees = degrees;
         this.rbuts = [];
         var t = this;
         for (var i = 0; i < os.as.length; ++i) {
@@ -311,16 +315,19 @@ $.widget("ui.q_agreement", {
         }
     },
 
-    getQuestion: function () { return this.options.q; },
-
     getAnswer: function () {
-        for (var i = 0; i < this.rbuts.length; ++i) {
-            if ($(this.rbuts[i]).attr('checked'))
-                return this.rbuts[i].data('value');
+        var ans = [];
+        for (var i = 0; i < this.options.as.length; ++i) {
+            for (var j = 0; j < this.degrees; ++j) {
+                if ($(this.rbuts[(i*this.degrees)+j]).attr('checked')) {
+                    ans.push([this.options.q + '/' + this.options.as[i], this.rbuts[(i*this.degrees)+j].data('value')]);
+                }
+            }
         }
+        return ans;
     }
 });
-$.ui.q_agreement.getter = 'getQuestion getAnswer';
+$.ui.q_agreement.getter = 'getAnswer';
 
 $.widget("ui.q_comment", {
     _init : function () {
@@ -336,17 +343,20 @@ $.widget("ui.q_comment", {
                     .addClass("comment"));
     },
 
-    getQuestion : function () { return this.options.q; },
-
     getAnswer : function () {
-        return this.textarea.attr('value');
+        return [ [this.options.q, this.textarea.attr('value') ] ];
     }
 });
-$.ui.q_comment.getter = 'getQuestion getAnswer';
+$.ui.q_comment.getter = 'getAnswer';
 
 $.widget("ui.q_selection", {
     _init : function () {
         this.element.addClass("q-selection");
+
+        if (this.options.has_other && this.options.mselection) {
+            alert("ERROR: Impossible combination of options for 'q_selection' widget.");
+            return;
+        }
 
         var os = this.options;
         this.element
@@ -357,31 +367,42 @@ $.widget("ui.q_selection", {
         this.rbuts = [];
         var t = this;
         var bgroup = radioButtonGroupCounter++;
-        for (var i = 0; i < os.as.length; ++i) {
-            (function (txt, rbut, txtspan) { // txtpsan and rbut set later (fake locals)
-            rbuts.append($("<tr>")
-                         .append($("<td>").append(rbut = mkcheck(os.mselection ? false : bgroup, txt)))
-                         .append($("<td>").addClass("ans").append(txtspan = $("<span>").append(txt).css('cursor', 'default'))));
+        for (var i = 0; i < (this.options.has_other ? os.as.length + 1 : os.as.length); ++i) {
+            (function (i, txt, rbut, txtspan, othertxt) { // txtpsan and rbut and othertxt set later (fake locals)
+            var tr;
+            rbuts.append(tr = $("<tr>")
+                         .append($("<td>").append(rbut = mkcheck(os.mselection ? false : bgroup, txt))));
+            if (i < os.as.length)
+                tr.append($("<td>").addClass("ans").append(txtspan = $("<span>").append(txt).css('cursor', 'default')));
+            else
+                tr.append($("<td>").addClass("ans").append(othertxt = $("<span>").css('cursor', 'default').html("Other:&nbsp;")).append(txtspan = $("<input type='text' size='20' value=''>")));
             rbut.click(function () {
+                if (i == os.as.length)
+                    txtspan.get(0).focus();
                 if (os.answerWatcher)
                     os.answerWatcher(txt);
             });
             t.rbuts.push(rbut);
             txtspan.click(function () {
+                if (i == os.as.length)
+                    txtspan.get(0).focus();
                 rbut.attr('checked', rbut.attr('checked') && os.mselection ? '' : '1');
                 if (os.answerWatcher) {
                     os.answerWatcher(txt);
                 }
             });
-            })(os.as[i]);
+            if (othertxt)
+                othertxt.click(function () {
+                    txtspan.get(0).focus();
+                    rbut.attr('checked', '1'); // Note that it cannot be an mselection.
+                });
+            })(i, i < os.as.length ? os.as[i] : null);
         }
 
         this.element.append(rbuts);
     },
 
     setAnswerWatcher : function (v) { this.options.answerWatcher = v; },
-
-    getQuestion : function () { return this.options.q; },
 
     getAnswer : function () {
         var astring = ""
@@ -390,17 +411,19 @@ $.widget("ui.q_selection", {
                 if (this.rbuts[i].attr('checked'))
                     astring += this.rbuts[i].data('value') + ',';
             }
-            return astring.replace(/,$/, '');
+            return [ [ this.options.q, astring.replace(/,$/, '') ] ];
         }
         else {
             for (var i = 0; i < this.rbuts.length; ++i) { 
                 if (this.rbuts[i].attr('checked'))
-                    return this.rbuts[i].data('value');
+                    return [ [ this.options.q,
+                               this.rbuts[i].get(0).tagName == "INPUT" ? this.rbuts[i].attr('value') : this.rbuts[i].data('value') ] ];
             }
+            return [ [ this.options.q, null ] ];
         }
     }
 });
-$.ui.q_selection.getter = 'getQuestion getAnswer';
+$.ui.q_selection.getter = 'getAnswer';
 
 $.widget("ui.paginated", {
     _init: function () {
@@ -569,7 +592,7 @@ var g_questions = [];
 function buildQ(pageDiv, q, level) {
     var qdiv;
     if (q.type == "selection")
-        qdiv = $("<div>").q_selection({ q: q.q, as: q.as });
+        qdiv = $("<div>").q_selection({ q: q.q, as: q.as, has_other: q.has_other });
     else if (q.type == "mselection")
         qdiv = $("<div>").q_selection({ mselection: true, q: q.q, as: q.as });
     else if (q.type == "agreement")
@@ -709,9 +732,12 @@ function getResults () {
         var sects = g_questions[i][0];
         var div = g_questions[i][1];
         var wname = div.data('widgetName');
-        lst.push([sects,
-                  div[wname]("getQuestion"),
-                  g_questions[i][1].data('exclude') ? null : div[wname]("getAnswer")]);
+        var ans = div[wname]("getAnswer");
+        for (var j = 0; j < ans.length; ++j) {
+            lst.push([sects,
+                      ans[j][0],
+                      g_questions[i][1].data('exclude') ? null : ans[j][1]]);
+        }
     }
     return lst;
 }

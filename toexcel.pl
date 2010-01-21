@@ -54,7 +54,9 @@ while (my $entry = readdir($dir)) {
 
     my $current_column = 0;
     for my $question (@$json) {
-        $worksheet->write($current_row, $current_column, $question->[2]);
+        my $ans = $question->[2];
+        $ans =~ s/\n/\r\n/g if ($ans);
+        $worksheet->write($current_row, $current_column, $ans);
         ++$current_column;
     }
 
