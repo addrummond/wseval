@@ -8,6 +8,7 @@ use File::Spec::Functions qw( catfile );
 use constant RESULTS_DIR => '/var/ws2010results';
 
 my $ofname = "results.xls";
+my $tofname = "results.txt";
 
 sub getcoltitle {
     my $r = shift;
@@ -16,6 +17,8 @@ sub getcoltitle {
 
 my $workbook = Spreadsheet::WriteExcel->new($ofname);
 my $worksheet = $workbook->add_worksheet();
+
+open my $tf, ">$tofname" or die "Unable to open '$tofname': $!";
 
 my $boldf = $workbook->add_format();
 $boldf->set_bold;
@@ -56,7 +59,13 @@ while (my $entry = readdir($dir)) {
     for my $question (@$json) {
         my $ans = $question->[2];
         $ans =~ s/\n/\r\n/g if ($ans);
+
+        # EXCEL.
         $worksheet->write($current_row, $current_column, $ans);
+
+        # PLAIN TEXT
+        print $tf "- ", $column_titles[$current_column], "\n", ($ans || ""), "\n\n";
+
         ++$current_column;
     }
 
@@ -67,3 +76,4 @@ while (my $entry = readdir($dir)) {
 closedir $dir or die "Unable to close results dir: $!";
 
 $workbook->close();
+close $tf or die "Unable to close '$tofname': $!";

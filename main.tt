@@ -374,8 +374,10 @@ $.widget("ui.q_selection", {
                          .append($("<td>").append(rbut = mkcheck(os.mselection ? false : bgroup, txt))));
             if (i < os.as.length)
                 tr.append($("<td>").addClass("ans").append(txtspan = $("<span>").append(txt).css('cursor', 'default')));
-            else
+            else {
                 tr.append($("<td>").addClass("ans").append(othertxt = $("<span>").css('cursor', 'default').html("Other:&nbsp;")).append(txtspan = $("<input type='text' size='20' value=''>")));
+                rbut.data('istext', txtspan);
+            }
             rbut.click(function () {
                 if (i == os.as.length)
                     txtspan.get(0).focus();
@@ -431,7 +433,7 @@ $.widget("ui.q_selection", {
             for (var i = 0; i < this.rbuts.length; ++i) { 
                 if (this.rbuts[i].attr('checked'))
                     return [ [ this.options.q,
-                               this.rbuts[i].get(0).tagName == "INPUT" ? this.rbuts[i].attr('value') : this.rbuts[i].data('value') ] ];
+                               this.rbuts[i].data('istext') ? this.rbuts[i].data('istext').attr('value') : this.rbuts[i].data('value') ] ];
             }
             return [ [ this.options.q, null ] ];
         }
