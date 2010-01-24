@@ -236,7 +236,7 @@ questions:
         as:
           - "Overall, I found the lunch sessions with faculty to be helpful in my graduate studies."
       - type: comment
-        q: "Please comment on the lunch sessions with faculty (what was most helpful/least helpful, etc.)"
+        q: "Please comment on the lunch sessions with faculty (what was most helpful/least helpful/other comments)"
   - type: section
     name: "Afternoon Research Lecture Sessions on Monday and Tuesday Afternoon"
     contents:
@@ -265,7 +265,7 @@ questions:
         as:
           - "Overall, I found the afternoon research lecture sessions to be helpful to my graduate studies."
       - type: comment
-        q: "Please comment on the afternoon research lecture sessions (what was most helpful/least helpful, etc.)"
+        q: "Please comment on the afternoon research lecture sessions (what was most helpful/least helpful/other comments)"
   - type: section
     name: "Afternoon Research Group Sessions"
     contents:
@@ -330,7 +330,7 @@ questions:
         as:
           - "Overall, I found the research group sessions to be helpful to my graduate studies."
       - type: comment
-        q: "Please comment on the research group sessions (what was most helpful/least helpful)"
+        q: "Please comment on the research group sessions (what was most helpful/least helpful/other comments)"
 
   - type: section
     name: "Session with IGERT from Penn and Johns Hopkins"
@@ -393,6 +393,7 @@ questions:
         as:
           - "Yes"
           - "No"
+          - "I don't know"
       - type: comment
         q: "If yes, please describe; if no, explain why not."
       - type: selection
@@ -404,6 +405,6 @@ questions:
           - "Some"
           - "A lot"
       - type: comment
-        q: "Please comment on the overall Winter Storm workshop experience (what was most helpful/least helpful)"
+        q: "Please comment on the overall Winter Storm workshop experience (what was most helpful/least helpful/other comments)"
       - type: comment
         q: "What are three things that you learned about interdisciplinary language research from attending Winter Storm?"
