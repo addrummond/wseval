@@ -22,20 +22,20 @@ my $tt = Template->new();
 
 my $templ = $q->Vars->{ok} ? "main.tt" : "auth.tt";
 
-my @stats = stat('$templ');
-my @cstats = stat('$templ.cache');
+my @stats = stat($templ);
+my @cstats = stat("$templ.cache");
 my @qstats = stat('questions.yml');
 
-if (! -f '${templ}.cache' || $cstats[9] < $stats[9] || $cstats[9] < $qstats[9]) {
-    open my $cache, '>${templ}.cache' or die "Unable to open cache file: $!";
+if (! -f "${templ}.cache" || $cstats[9] < $stats[9] || $cstats[9] < $qstats[9]) {
+    open my $cache, ">${templ}.cache" or die "Unable to open cache file: $!";
     $tt->process("${templ}", { questions => $encoded_questions }, $cache);
     close $cache or die "Unable to close cache file: $!";
-    open my $cacher, '${templ}.cache' or die "Unable to open cache file (2): $!";
+    open my $cacher, "${templ}.cache" or die "Unable to open cache file (2): $!";
     for (<$cacher>) { print; }
     close $cacher or die "Unable to close cache file (2): $!";
 }
 else {
-    open my $cache, '${templ}.cache' or die "Unable to open cache file (3): $!";
+    open my $cache, "${templ}.cache" or die "Unable to open cache file (3): $!";
     for (<$cache>) { print; }
     close $cache or die "Unable to close cache file (3): $!";
 }
