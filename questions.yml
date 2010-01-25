@@ -94,9 +94,9 @@ questions:
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
-              - "More time allocated to infant methods."
-              - "The same amount of time allocated to infant methods."
-              - "Less time allocated to infant methods."
+              - "More time allocated to infant studies."
+              - "The same amount of time allocated to infant studies."
+              - "Less time allocated to infant studies."
           - type: agreement
             q: "After participating in this session:"
             as:

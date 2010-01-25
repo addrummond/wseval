@@ -318,15 +318,14 @@ $.widget("ui.q_agreement", {
     getAnswer: function () {
         var ans = [];
         for (var i = 0; i < this.options.as.length; ++i) {
-            var oneWasSelected = false;
+            var resLine = [this.options.q + '/' + this.options.as[i], null];
             for (var j = 0; j < this.degrees; ++j) {
                 if ($(this.rbuts[(i*this.degrees)+j]).attr('checked')) {
                     oneWasSelected = true;
-                    ans.push([this.options.q + '/' + this.options.as[i], this.rbuts[(i*this.degrees)+j].data('value')]);
+                    resLine[1] = this.rbuts[(i*this.degrees)+j].data('value');
                 }
             }
-            if (! oneWasSelected)
-                ans.push([this.options.q + '/' + this.options.as[i], null]);
+            ans.push(resLine);
         }
         return ans;
     }
@@ -538,7 +537,8 @@ $.widget("ui.paginated", {
                 }
                 @*/
 
-                document.location = "#top";
+                if (window.scrollTo)
+                    window.scrollTo(0, 0);
             }
         }
     },
@@ -771,7 +771,6 @@ $(document).ready(function () {
 <body id="body">
 <div id="outer">
 <div id="contents">
-<span id="top"></span>
 </div>
 </div>
 </body>
