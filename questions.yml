@@ -14,6 +14,7 @@ questions:
           - "Second Language Acquisition"
           - "Hearing and Speech Sciences"
           - Philosophy
+        has_other: 1
       - type: selection
         q: "What is your gender?"
         as:
@@ -64,6 +65,12 @@ questions:
         name: "Statistics/R"
         contents:
           - type: selection
+            q: "Did you participate in the Statistics/R session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: "No"
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to Statistics/R."
@@ -79,11 +86,17 @@ questions:
         name: "Infant Studies"
         contents:
           - type: selection
+            q: "Did you participate in the infant studies section?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
-              - "More time allocated to infant methods."
-              - "The same amount of time allocated to infant methods."
-              - "Less time allocated to infant methods."
+              - "More time allocated to infant studies."
+              - "The same amount of time allocated to infant studies."
+              - "Less time allocated to infant studies."
           - type: agreement
             q: "After participating in this session:"
             as:
@@ -93,6 +106,12 @@ questions:
       - type: section
         name: "Eye tracking"
         contents:
+          - type: selection
+            q: "Did you participate in the eye tracking session?"
+            as: 
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
@@ -109,6 +128,12 @@ questions:
         name: "EEG Methods"
         contents:
           - type: selection
+            q: "Did you participate in the EEG methods session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to EEG."
@@ -123,6 +148,12 @@ questions:
       - type: section
         name: "MEG Methods"
         contents:
+          - type: selection
+            q: "Did you participate in the MEG methods section?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
@@ -139,6 +170,12 @@ questions:
         name: "Machine Learning with Weka"
         contents:
           - type: selection
+            q: "Did you participate in the Machine Learning with Weka session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
+          - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
               - "More time allocated to Weka."
@@ -153,6 +190,12 @@ questions:
       - type: section
         name: "Phonetic Analysis with Praat"
         contents:
+          - type: selection
+            q: "Did you participate in the phonetic analysis with Praat session?"
+            as:
+              - Yes
+              - No
+            hide_remainder_if_answer_is: No
           - type: selection
             q: "In planning future winter storm workshops, I would have liked:"
             as:
@@ -193,9 +236,9 @@ questions:
         as:
           - "Overall, I found the lunch sessions with faculty to be helpful in my graduate studies."
       - type: comment
-        q: "Please comment on the lunch sessions with faculty (what was most helpful/least helpful, etc.)"
+        q: "Please comment on the lunch sessions with faculty (what was most helpful/least helpful/other comments)"
   - type: section
-    name: "Afternoon Research Lecture Sessions"
+    name: "Afternoon Research Lecture Sessions on Monday and Tuesday Afternoon"
     contents:
       - type: selection
         q: "Did you participate in the Afternoon Research Lecture sessions?"
@@ -222,7 +265,7 @@ questions:
         as:
           - "Overall, I found the afternoon research lecture sessions to be helpful to my graduate studies."
       - type: comment
-        q: "Please comment on the afternoon research lecture sessions (what was most helpful/least helpful, etc.)"
+        q: "Please comment on the afternoon research lecture sessions (what was most helpful/least helpful/other comments)"
   - type: section
     name: "Afternoon Research Group Sessions"
     contents:
@@ -287,7 +330,7 @@ questions:
         as:
           - "Overall, I found the research group sessions to be helpful to my graduate studies."
       - type: comment
-        q: "Please comment on the research group sessions (what was most helpful/least helpful)"
+        q: "Please comment on the research group sessions (what was most helpful/least helpful/other comments)"
 
   - type: section
     name: "Session with IGERT from Penn and Johns Hopkins"
@@ -316,6 +359,18 @@ questions:
           - "Yes &mdash; occasionally."
           - "Yes &mdash; every session that was offered."
         hide_remainder_if_answer_is: "No."
+      - type: agreement
+        q: ""
+        as:
+          - "After participating in the socializing activities I feel more connected to other IGERT participants."
+      - type: selection
+        q: "In planning future Winter Storm workshops, I would have liked:"
+        as:
+          - "More time allocated to socializing."
+          - "The same amount of time allocated to socializing."
+          - "Less time allocated to socializing."
+      - type: comment
+        q: "Please comment on the socializing activities(what was most helpful/least helpful/other comments):"
 
   - type: section
     name: "Overall"
@@ -338,6 +393,7 @@ questions:
         as:
           - "Yes"
           - "No"
+          - "I don't know"
       - type: comment
         q: "If yes, please describe; if no, explain why not."
       - type: selection
@@ -349,6 +405,6 @@ questions:
           - "Some"
           - "A lot"
       - type: comment
-        q: "Please comment on the overall Winter Storm workshop experience (what was most helpful/least helpful)"
+        q: "Please comment on the overall Winter Storm workshop experience (what was most helpful/least helpful/other comments)"
       - type: comment
-        q: "What are the things that your learned about interdisciplinary language research from attending Winter Storm?"
+        q: "What are three things that you learned about interdisciplinary language research from attending Winter Storm?"
