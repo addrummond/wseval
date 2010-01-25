@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+[% USE Filter.Minify.CSS %]
+[% USE Filter.Minify.JavaScript %]
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>[% title %]</title>
+<style type="text/css">
+/* <![CDATA[ */
+[% ROUNDING = '8px' %]
+[% BODY_BACKGROUND = '#CEDFEF' %]
+[% OUTER_BACKGROUND = '#FFFFFF' %]
+[% HEADING = '#C65421' %]
+[% VLARGE = '18pt' %]
+[% LARGE = '16pt' %]
+[% STDSIZE = '14pt' %]
+[% SMALL = '10pt' %]
+[% TEXT_COLOR = '#202020' %]
+[% WEAK_COLOR = 'grey' %]
+[% Q_COLOR = '#E7DBDD' %]
+
+[% FILTER minify_css %]
+body {
+    font-size: 12pt;
+    font-family: "Verdana", "Helvetica", "Arial", "sans-serif", "sans serif", "sansserif";
+    background-color: [% BODY_BACKGROUND %];
+    padding-bottom: 50px;
+    color: [% TEXT_COLOR %];
+}
+#outer {
+    width: 35em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    position: relative;
+    top: 25px;
+    background-color: [% OUTER_BACKGROUND %];
+    -moz-border-radius: [% ROUNDING %];
+    -webkit-border-radius: [% ROUNDING %];
+}
+#outer2 { }
+#contents {
+    padding-bottom: 2em;
+}
+
+.oklink { text-align: center; }
+
+.qbox {
+    /*padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;*/
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: [% Q_COLOR %];
+    -moz-border-radius: [% ROUNDING %];
+    -webkit-border-radius: [% ROUNDING %];
+}
+.qbox a {
+    color: [% TEXT_COLOR %];
+    font-weight: bold;
+    text-decoration: none;
+}
+.qbox a:visited {
+    color: [% TEXT_COLOR %];
+    text-decoration: none;
+}
+.qbox a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: [% HEADING %];
+    text-align: center;
+    position: relative;
+    left: -0.5em;
+}
+
+h2 {
+    font-size: [% VLARGE %];
+    font-weight: bold;
+}
+
+h3 {
+    font-size: [% LARGE %];
+    font-weight: normal; 
+}
+
+th {
+    font-weight: normal;
+    text-decoration: none;
+    text-align: left;
+}
+
+.q-selection {
+    vertical-align: top;
+}
+.q-selection td.ans {
+    vertical-align: top;
+    padding-left: 1em;
+}
+.q-selection input {
+    font-size: [% SMALL %];
+}
+
+p.question {
+    margin-top: 0;
+    padding-top: 0;
+    font-weight: bold;
+}
+
+input.chk {
+    margin-right: 1em;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+td input.chk {
+    margin-right: 0;
+}
+
+.q-agreement table {
+    margin-bottom: 1em;
+    /*width: 30em;*/
+}
+
+.q-agreement table td {
+    /*text-align: center;*/
+}
+
+.q-agreement-question {
+    margin-bottom: 0;
+    padding-bottom: 0.25em;
+}
+
+textarea {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+td.q-agreement-comment {
+    color: [% TEXT_COLOR %];
+    font-size: [% SMALL %];
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 0;
+    width: 5em;
+    text-align: left;
+}
+td.q-agreement-comment-left {
+    padding-right: 2em;
+}
+td.q-agreement-comment-right {
+    padding-left: 1em;
+}
+
+td.q-agreement-number {
+    text-align: center;
+    padding-right: 1em;
+}
+
+.nextprev {
+    color: [% WEAK_COLOR %];
+    font-size: [% SMALL %];
+/*    font-weight: bold;*/
+    font-style: italic;
+    padding-top: 2em;
+}
+
+.next, .prev {
+    cursor: pointer;
+    font-size: [% LARGE %];
+    color: [% TEXT_COLOR %];
+    font-style: normal;
+}
+.next:hover {
+    text-decoration: underline;
+}
+.next {
+    float: right;
+}
+.prev {
+    float: left;
+}
+.prev:hover {
+    text-decoration: underline;
+}
+.pinfo {
+    color: [% WEAK_COLOR %];
+/*    font-weight: bold;*/
+    font-size: small;
+    text-align: center;
+    font-style: italic;
+}
+
+.end-box {
+    background: [% HEADING %];
+    color: white;
+    text-align: center;
+    padding: 1em;
+    font-weight: bold;
+    -moz-border-radius: [% ROUNDING %];
+    -webkit-border-radius: [% ROUNDING %];
+}
+div.submit {
+    display: table;
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+div.submit input {
+    font-size: [% LARGE %];
+}
+div.spinner {
+    background-image: url("ajax-loader.gif");
+    width: 16px;
+    height: 16px;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+[% END %]
+/* ]]> */
+</style>
+[% FOREACH js_external_include IN js_external_includes %]
+<script type="text/javascript" src="[% js_external_include %]"></script>
+[% END %]
+<script type="text/javascript">
+/* <![CDATA[ */
+[% FILTER minify_js %]
+[% FOREACH js_include IN js_template_includes %]
+[% PROCESS $js_include %]
+[% END %]
+[% FOREACH js_include IN js_includes %]
+[% INSERT $js_include %]
+[% END %]
+[% END %]
+/* ]]> */
+</script>
+</head>
+
+<body id="body">
+<div id="outer">
+<div id="contents">[% content %]</div>
+</div>
+</body>
+</html>

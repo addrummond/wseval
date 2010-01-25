@@ -208,6 +208,15 @@ questions:
               - "I am more knowledable about the software."
               - "I intend to use the software in my graduate studies."
               - "I am capable of using the software in my graduate studies."
+      - type: section
+        name: "Overall impression of morning methods"
+        contents:
+          - type: agreement
+            q: ""
+            as:
+              - "Overall, I found the morning methods sessions to be helpful to my graduate studies."
+          - type: comment
+            q: "Please comment on the morning methods sessions (what was most helpful/least helpful/other comments):"
   - type: section
     name: "Lunch Sessions With Faculty"
     contents:

@@ -1,0 +1,13 @@
+[% WRAPPER wrapper.tt
+   title = "Winter Storm 2010 Survey",
+%]
+<h2>Winter Storm 2010 Survey</h2>
+<div class="qbox">
+<p>
+Did you read and sign the consent form during Winter Storm? If not, please contact Corbin Campbell (<a href="mailto:corbin@umd.edu">corbin@umd.edu</a>) prior to completing this survey to receive a consent form.
+<p>
+<p class="oklink">
+<a href="survey.pl?ok=1">&raquo; Yes, I have received a consent form</a>
+</p>
+</div>
+[% END %]
