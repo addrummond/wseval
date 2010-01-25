@@ -620,6 +620,9 @@ function buildQ(pageDiv, q, level) {
 
     qdiv.addClass("qbox");
 
+    if (q.hide_remainder_if_answer_is)
+        addWatchOn(pageDiv, q, qdiv);
+
     g_questions.push([level, qdiv]);
 
     pageDiv.append(qdiv);
@@ -650,17 +653,6 @@ function buildPage (elems, pageDiv, level, hiding) {
             alert("ERROR: Should not get here (" + elems[i].type + ")");
         }
     }
-
-    // COMMENT THIS OUT IF YOU WANT ALL QS TO SHOW BY DEFAULT.
-    if (triggerDiv) {
-        var children = pageDiv.children();
-        for (var i = 0; i < children.length; ++i) {
-            if (children[i] != triggerDiv[0] && ! children[i].tagName.match(/H\d+/i)) {
-                $(children[i]).hide().data('exclude', true);
-            }
-        }
-    }
-    // END OF "COMMENT THIS OUT".
 }
 
 function makePages_ () {
